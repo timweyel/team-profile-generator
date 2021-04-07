@@ -6,27 +6,44 @@ test('creates an employee object', () => {
   expect(typeof(employee)).toBe('object');
 });
 
+test('can set a name', () => {
+  const name = "Tim";
+  const employee = new Employee(name);
+  expect(employee.name).toBe(name);
+});
 
+test('can set an id', () => {
+  const id = 12345;
+  const employee = new Employee("Tim", id);
+  expect(employee.id).toBe(id);
+});
 
+test('can set an email', () => {
+  const email = "email@email.com";
+  const employee = new Employee("Tim", 12345, email);
+  expect(employee.email).toBe(email);
+});
 
+test('can getName()', () => {
+  const name = "Tim";
+  const employee = new Employee(name);
+  expect(employee.getName().toBe(name));
+});
 
+test('can getId()', () => {
+  const id = 12345;
+  const employee = new Employee("Tim", id);
+  expect(employee.getId().toBe(id));
+});
 
+test('can getEmail()', () => {
+  const email = "email@email.com";
+  const employee = new Employee("Tim", 12345, email);
+  expect(employee.getEmail().toBe(email));
+});
 
-
-
-
-// Employee parent class with the following properties and methods:
-
-// name
-
-// id
-
-// email
-
-// getName()
-
-// getId()
-
-// getEmail()
-
-// getRole() // Returns 'Employee'
+test('getRole() returns Employy', () => {
+  const role = "Employee";
+  const employee = new Employee("Tim", 12345, "email@email.com");
+  expect(employee.getRole().toBe(role));
+});
