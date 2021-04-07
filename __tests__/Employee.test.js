@@ -27,23 +27,23 @@ test('can set an email', () => {
 test('can getName()', () => {
   const name = "Tim";
   const employee = new Employee(name);
-  expect(employee.getName().toBe(name));
+  expect(employee.getName()).toBe(name);
 });
 
 test('can getId()', () => {
   const id = 12345;
   const employee = new Employee("Tim", id);
-  expect(employee.getId().toBe(id));
+  expect(employee.getId()).toBe(id);
 });
 
 test('can getEmail()', () => {
   const email = "email@email.com";
   const employee = new Employee("Tim", 12345, email);
-  expect(employee.getEmail().toBe(email));
+  expect(employee.getEmail()).toBe(email);
 });
 
-test('getRole() returns Employy', () => {
+test('getRole() returns Employee', () => {
   const role = "Employee";
   const employee = new Employee("Tim", 12345, "email@email.com");
-  expect(employee.getRole().toBe(role));
+  expect(employee.getRole()).toBe(role);
 });
