@@ -1,7 +1,7 @@
-// const Intern = require('..lib/Intern.js');
+const Intern = require('../lib/Intern.js');
 
-// test('creates an intern object', () => {
-//   const intern = new Intern();
+test('creates an intern object', () => {
+  const intern = new Intern();
 
-//   expect(typeof(intern)).toBe('object');
-// });
+  expect(typeof(intern)).toBe('object');
+});

@@ -1,7 +1,7 @@
-// const Engineer = require('..lib/Engineer.js');
+const Engineer = require('../lib/Engineer.js');
 
-// test('creates an engineer object', () => {
-//   const engineer = new Engineer();
+test('creates an engineer object', () => {
+  const engineer = new Engineer();
 
-//   expect(typeof(engineer)).toBe('object');
-// });
+  expect(typeof(engineer)).toBe('object');
+});
