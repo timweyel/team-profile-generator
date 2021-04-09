@@ -12,7 +12,6 @@ test('can getSchool()', () => {
   expect(employee.getSchool()).toBe(school);
 })
 
-
 test("getRole() returns Intern", () => {
   const role = "Intern";
   const employee = new Intern("Tim", 12345, "email@email.com", "Cal Poly SLO");
