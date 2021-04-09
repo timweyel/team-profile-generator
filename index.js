@@ -6,6 +6,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+// manager is key to who his teammates are
 // create variables to hold questions for Manager, Engineer, Interns (each has their own variable)
   // Manager: ask for manager's name, id, email, office number
   // Engineer: ask for the engineer's name, email, and github username
@@ -121,9 +122,7 @@ const internQuestions = [
 
 //create a function to prompt questions for manager, engineer, and intern (each has their own function to manager prompts)
   //within each of these functions, add the answers to a responses object
-  
 
-   //TODO - add function to addManager();
 const addManager = () => {
   inquirer
   .prompt(managerQuestions)
@@ -132,6 +131,7 @@ const addManager = () => {
     if(!manager.teamMembers){
       manager.teamMembers = [];
     }
+    //TODO: D.R.Y. - this repeats 3 times. 
     if(responses.addTeammate === 'Yes, add an Engineer.') {
       addEngineer(manager);
     }
@@ -145,13 +145,13 @@ const addManager = () => {
   });
 };
 
-   //TODO - add function to addEngineer();
+
 const addEngineer = manager => {
   inquirer
   .prompt(engineerQuestions)
   .then(responses => {
-    const intern = new Intern(responses.name, responses.id, responses.email, responses.school);
-    manager.teamMembers.push(Intern);
+    const engineer = new Engineer(responses.name, responses.id, responses.email, responses.githubUsername);
+    manager.teamMembers.push(Engineer);
 
     if(responses.addTeammate === 'Yes, add an Engineer.') {
       addEngineer(manager);
@@ -166,11 +166,30 @@ const addEngineer = manager => {
   });
 };
 
-   //TODO - add function to addIntern();
+
+const addIntern = manager => {
+  inquirer
+  .prompt(internQuestions)
+  .then(responses => {
+    const intern = new Intern(responses.name, responses.id, responses.email, responses.school);
+    manager.teamMembers.push(Intern);
+
+    if(responses.addTeammate === 'Yes, add an Engineer.') {
+      addEngineer(manager);
+    }
+    if(responses.addTeammate === 'Yes, add an Intern.') {
+      addIntern(manager);
+    }
+    else if(responses.addTeammate === 'No, not right now.') {
+      createTeamProfile(manager);
+    }
+    console.log('responses from addIntern', responses);
+  });
+}
 
    //TODO - add function to writeFile to html called createTeamProfile()
 
-// writeFile team members to html -> generatePage()
+
   //lookup from last challenge how to do a write and copy because of css
 // use bootstrap cards
 // 
@@ -180,7 +199,6 @@ const init = () => {
   console.log("Welcome to the Team Profile Generator v0.1!");
   addManager();
 };
-
 
 // Function call to initialize app
 init();
