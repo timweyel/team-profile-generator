@@ -147,11 +147,24 @@ const addManager = () => {
 
    //TODO - add function to addEngineer();
 const addEngineer = manager => {
-  // inquirer
-  // .prompt(engineerQuestions)
-  // .then(responses)
+  inquirer
+  .prompt(engineerQuestions)
+  .then(responses => {
+    const intern = new Intern(responses.name, responses.id, responses.email, responses.school);
+    manager.teamMembers.push(Intern);
 
-}
+    if(responses.addTeammate === 'Yes, add an Engineer.') {
+      addEngineer(manager);
+    }
+    if(responses.addTeammate === 'Yes, add an Intern.') {
+      addIntern(manager);
+    }
+    else if(responses.addTeammate === 'No, not right now.') {
+      createTeamProfile(manager);
+    }
+    console.log('responses from addEngineer', responses);
+  });
+};
 
    //TODO - add function to addIntern();
 
