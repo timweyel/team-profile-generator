@@ -24,7 +24,7 @@ const managerQuestions = [
     {
       type: "input",
       name: "name",
-      message: "Welcome to the Team Profile Generator v0.1! Please enter the manager's name",
+      message: "Please enter the manager's name",
     },
     {
       type: "number",
@@ -127,44 +127,22 @@ const internQuestions = [
   }
 ];
 
+   //TODO - add function to addManager();
 
-// function addEmployees() {
-//   inquirer.prompt([
-//     {
-//       type: "list",
-//       name: "addEmployee",
-//       message: "Would you like to add more team members?",
-//       choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
-//     },
-//   ])
-//   .then(function(employeeData) {
-//     switch(employeeData.addEmployee) {
-//       case "Yes, add an Engineer":
-//         //TODO - add function to addEngineer();
-//         addEngineer();
-//         break;
+   //TODO - add function to addEngineer();
 
-//       case "Yes, add an Intern":
-//         //TODO - add function to addIntern();
-//         addIntern();
-//         break;
-      
-//       case "No, not right now":
-//         //TODO - add function to write to html called createTeamProfile()
-//         createTeamProfile();
-//     }
-//   });
-// }
+   //TODO - add function to addIntern();
+
+   //TODO - add function to write to html called createTeamProfile()
 
 
 
+//function to init app
+const init = () => {
+  console.log("Welcome to the Team Profile Generator v0.1!");
+  addManager();
+};
 
 
-// //function to init app
-// function init() {
-  welcomeMessage();
-// };
-
-
-// // Function call to initialize app
-// init();
+// Function call to initialize app
+init();
