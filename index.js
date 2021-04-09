@@ -17,9 +17,10 @@ const template = require('./src/pageTemplate');
 // use bootstrap cards
 // 
 
-//TODO: add validation to inputs
+
 
 const managerQuestions = [
+  //TODO: add validation to inputs
     {
       type: "input",
       name: "name",
@@ -64,9 +65,69 @@ const managerQuestions = [
     },
   ];
 
-  const engineerQuestions = [
+const engineerQuestions = [
+    // Engineer: ask for the engineer's name, email, and github username
+    //TODO: add validation to inputs
+  {
+    type: "input",
+    name: "name",
+    message: "What is the engineer's name?"
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is their email address?"
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is their employee id?"
+  },
+  {
+    type: "input",
+    name: "githubUsername",
+    message: "What is their GitHub username?"
+  },
+  {
+    type: "list",
+    name: "addEmployee",
+    message: "Would you like to add more team members?",
+    choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
+  },
+];
 
-  ]
+const internQuestions = [
+    // Intern: ask for intern's name, email, and school
+    //TODO: add validation to inputs
+  {
+    type: "input",
+    name: "name",
+    message: "What is their name?"
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is their email address?"
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is their employee id?"
+  },
+  {
+    type: "input",
+    name: "school",
+    message: "What college did they attend?"
+  },
+  {
+    type: "list",
+    name: "addEmployee",
+    message: "Would you like to add more team members?",
+    choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
+  }
+];
+
+
 // function addEmployees() {
 //   inquirer.prompt([
 //     {
