@@ -39,6 +39,7 @@ function welcomeMessage() {
       type: "input",
       name: "email",
       message: "What is your manager's email address?",
+      //TODO: cleanup this UX - how to clear input after submission?
       // credit to: https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
       default: () => {},
       validate: function (email) {
@@ -63,8 +64,38 @@ function welcomeMessage() {
   ])
   .then(employeeData => {
     console.log(employeeData);
+    addEmployees();
   });
 };
+
+function addEmployees() {
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "addEmployee",
+      message: "Would you like to add more team members?",
+      choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
+    },
+  ])
+  .then(function(employeeData) {
+    switch(employeeData.addEmployee) {
+      case "Yes, add an Engineer":
+        //TODO - add function to addEngineer();
+        addEngineer();
+        break;
+
+      case "Yes, add an Intern":
+        //TODO - add function to addIntern();
+        addIntern();
+        break;
+      
+      case "No, not right now":
+        //TODO - add function to write to html called createTeamProfile()
+        createTeamProfile();
+    }
+  });
+}
+
 
 
 
