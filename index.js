@@ -4,41 +4,36 @@ const fs = require('fs');
 const template = require('./src/pageTemplate');
 
 // initialize an inquirer prompt
-// ask for the team manager's name, emp ID, email, and office #
-  // .then assign these answers to variables  
-  // push these variables to an array
-// call the next function which prompts with a list and if they want to 
-  // add more team members.
-  // .then select to add an engineer, add an intern, or that the team is complete(if complete, proceed to write html)
+// create variables to hold questions for Manager, Engineer, Interns (each has their own variable)
+  // Manager: ask for manager's name, id, email, office number
+  // Engineer: ask for the engineer's name, email, and github username
+  // Intern: ask for intern's name, email, and school
 
-// Engineer: ask for the engineer's name, email, and github username
-  // .then assign answers to variables
-  // push these variables to an array
-
-// Intern: ask for intern's name, email, and school
-  // .then assign these answers to variables
-  // push these variables to an array
-
-// write team members to html -> generatePage()
+//create a function to prompt questions for manager, engineer, and intern (each has their own function to manager prompts)
+  //within each of these functions, add the answers to a responses object
+  
+// writeFile team members to html -> generatePage()
+  //lookup from last challenge how to do a write and copy because of css
 // use bootstrap cards
 // 
 
-function welcomeMessage() {
-  inquirer.prompt([
+//TODO: add validation to inputs
+
+const managerQuestions = [
     {
       type: "input",
       name: "name",
-      message: "Welcome to the Team Profile Generator v0.1! Please enter your manager's name",
+      message: "Welcome to the Team Profile Generator v0.1! Please enter the manager's name",
     },
     {
       type: "number",
       name: "id",
-      message: "What is your manager's employee ID?",
+      message: "What is the manager's employee ID?",
     },
     {
       type: "input",
       name: "email",
-      message: "What is your manager's email address?",
+      message: "What is the manager's email address?",
       //TODO: cleanup this UX - how to clear input after submission?
       // credit to: https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
       default: () => {},
@@ -59,42 +54,46 @@ function welcomeMessage() {
     {
       type: "number",
       name: "officeNumber",
-      message: "What is your manager's office number?"
-    }
-  ])
-  .then(employeeData => {
-    console.log(employeeData);
-    addEmployees();
-  });
-};
-
-function addEmployees() {
-  inquirer.prompt([
+      message: "What is the manager's office number?"
+    },
     {
       type: "list",
       name: "addEmployee",
       message: "Would you like to add more team members?",
       choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
     },
-  ])
-  .then(function(employeeData) {
-    switch(employeeData.addEmployee) {
-      case "Yes, add an Engineer":
-        //TODO - add function to addEngineer();
-        addEngineer();
-        break;
+  ];
 
-      case "Yes, add an Intern":
-        //TODO - add function to addIntern();
-        addIntern();
-        break;
+  const engineerQuestions = [
+
+  ]
+// function addEmployees() {
+//   inquirer.prompt([
+//     {
+//       type: "list",
+//       name: "addEmployee",
+//       message: "Would you like to add more team members?",
+//       choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
+//     },
+//   ])
+//   .then(function(employeeData) {
+//     switch(employeeData.addEmployee) {
+//       case "Yes, add an Engineer":
+//         //TODO - add function to addEngineer();
+//         addEngineer();
+//         break;
+
+//       case "Yes, add an Intern":
+//         //TODO - add function to addIntern();
+//         addIntern();
+//         break;
       
-      case "No, not right now":
-        //TODO - add function to write to html called createTeamProfile()
-        createTeamProfile();
-    }
-  });
-}
+//       case "No, not right now":
+//         //TODO - add function to write to html called createTeamProfile()
+//         createTeamProfile();
+//     }
+//   });
+// }
 
 
 
