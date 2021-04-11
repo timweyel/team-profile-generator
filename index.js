@@ -1,7 +1,7 @@
 //global constants for dependencies
 const inquirer = require('inquirer');
 const fs = require('fs');
-const template = require('./src/pageTemplate');
+const generatePage = require('./src/pageTemplate');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -30,20 +30,20 @@ const managerQuestions = [
     message: "What is the manager's email address?",
     //TODO: cleanup this UX - how to clear input after submission?
     // credit to: https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
-    default: () => {},
-    validate: function (email) {
+    // default: () => {},
+    // validate: function (email) {
 
-        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
 
-        if (valid) {
-          // console.log("Great job");
-            return true;
-        } else {
-            console.log(".  Please enter a valid email")
-            return false;
-        }
+    //     if (valid) {
+    //       // console.log("Great job");
+    //         return true;
+    //     } else {
+    //         console.log(".  Please enter a valid email")
+    //         return false;
+    //     }
       // end credit
-      }
+      // }
   },
   {
     type: "number",
@@ -52,9 +52,9 @@ const managerQuestions = [
   },
   {
     type: "list",
-    name: "addEmployee",
+    name: "addTeammate",
     message: "Would you like to add more team members?",
-    choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
+    choices: ["Yes, add an Engineer.", "Yes, add an Intern.", "No, not right now."]
   },
 ];
 
@@ -83,9 +83,9 @@ const engineerQuestions = [
   },
   {
     type: "list",
-    name: "addEmployee",
+    name: "addTeammate",
     message: "Would you like to add more team members?",
-    choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
+    choices: ["Yes, add an Engineer.", "Yes, add an Intern.", "No, not right now."]
   },
 ];
 
@@ -116,7 +116,7 @@ const internQuestions = [
     type: "list",
     name: "addTeammate",
     message: "Would you like to add more team members?",
-    choices: ["Yes, add an Engineer.", "Yes, add an Intern", "No, not right now."]
+    choices: ["Yes, add an Engineer.", "Yes, add an Intern.", "No, not right now."]
   }
 ];
 
@@ -127,9 +127,11 @@ const addManager = () => {
   inquirer
   .prompt(managerQuestions)
   .then(responses => {
+    // console.log('responses', responses);
     const manager = new Manager(responses.name, responses.id, responses.email, responses.officeNumber);
     if(!manager.teamMembers){
       manager.teamMembers = [];
+      //console.log('addManager manager', manager)
     }
     //TODO: D.R.Y. - this repeats 3 times. 
     if(responses.addTeammate === 'Yes, add an Engineer.') {
@@ -142,17 +144,18 @@ const addManager = () => {
       createTeamProfile(manager);
     }
     console.log('responses from addManager', responses);
+    //createTeamProfile(manager);
   });
 };
 
 
-const addEngineer = manager => {
+const addEngineer = function(manager) { 
+  console.log('addEngineer');
   inquirer
   .prompt(engineerQuestions)
   .then(responses => {
     const engineer = new Engineer(responses.name, responses.id, responses.email, responses.githubUsername);
-    manager.teamMembers.push(Engineer);
-
+    manager.teamMembers.push(engineer);
     if(responses.addTeammate === 'Yes, add an Engineer.') {
       addEngineer(manager);
     }
@@ -168,12 +171,13 @@ const addEngineer = manager => {
 
 
 const addIntern = manager => {
+  console.log('addIntern');
   inquirer
   .prompt(internQuestions)
   .then(responses => {
     const intern = new Intern(responses.name, responses.id, responses.email, responses.school);
-    manager.teamMembers.push(Intern);
-
+    manager.teamMembers.push(intern);
+    console.log('addIntern intern', intern);
     if(responses.addTeammate === 'Yes, add an Engineer.') {
       addEngineer(manager);
     }
@@ -188,11 +192,18 @@ const addIntern = manager => {
 }
 
    //TODO - add function to writeFile to html called createTeamProfile()
+const createTeamProfile = manager => {
+  fs.writeFile('./dist/index.html', generatePage(manager), err => {
+    //responses;
+    if(err) throw err;
 
+    fs.copyFile('./src/style.css', './dist/style.css', err => {
+      if(err) throw err;
 
-  //lookup from last challenge how to do a write and copy because of css
-// use bootstrap cards
-// 
+      console.log('Team Profile has be generated');
+    })
+  })
+};
 
 //function to init app
 const init = () => {
