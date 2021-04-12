@@ -17,7 +17,7 @@ const managerQuestions = [
   {
     type: "input",
     name: "name",
-    message: "Please enter the manager's name",
+    message: "Please enter the manager's name:",
   },
   {
     type: "number",
@@ -29,21 +29,21 @@ const managerQuestions = [
     name: "email",
     message: "What is the manager's email address?",
     //TODO: cleanup this UX - how to clear input after submission?
-    // credit to: https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
-    // default: () => {},
-    // validate: function (email) {
+    //credit to: https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
+    default: () => {},
+    validate: function (email) {
 
-    //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
 
-    //     if (valid) {
-    //       // console.log("Great job");
-    //         return true;
-    //     } else {
-    //         console.log(".  Please enter a valid email")
-    //         return false;
-    //     }
-      // end credit
-      // }
+        if (valid) {
+          // console.log("Great job");
+            return true;
+        } else {
+            console.log(".  Please enter a valid email")
+            return false;
+        }
+      //end credit
+      }
   },
   {
     type: "number",
