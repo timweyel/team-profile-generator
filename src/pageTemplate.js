@@ -19,7 +19,7 @@ const generatePage = manager => {
     <!-- main -->
     <main class = "container justify-content-center">
         <div class="mt-5 row justify-content-around">
-            <div class = "card col-3 m-2">
+            <div class = "card col-3 m-2 border-0">
                 <div class="bg-dark text-light card-header">
                     <h2 class= "text-light">${manager.name}</h2>
                     <h2 class= "text-light"><i class="fas fa-mug-hot"></i>  ${manager.getRole()}</h2>
