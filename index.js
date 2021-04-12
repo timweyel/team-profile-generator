@@ -127,11 +127,9 @@ const addManager = () => {
   inquirer
   .prompt(managerQuestions)
   .then(responses => {
-    // console.log('responses', responses);
     const manager = new Manager(responses.name, responses.id, responses.email, responses.officeNumber);
     if(!manager.teamMembers){
       manager.teamMembers = [];
-      //console.log('addManager manager', manager)
     }
     //TODO: D.R.Y. - this repeats 3 times. 
     if(responses.addTeammate === 'Yes, add an Engineer.') {
@@ -143,14 +141,11 @@ const addManager = () => {
     else if(responses.addTeammate === 'No, not right now.') {
       createTeamProfile(manager);
     }
-    console.log('responses from addManager', responses);
-    //createTeamProfile(manager);
   });
 };
 
 
 const addEngineer = function(manager) { 
-  console.log('addEngineer');
   inquirer
   .prompt(engineerQuestions)
   .then(responses => {
@@ -165,13 +160,11 @@ const addEngineer = function(manager) {
     else if(responses.addTeammate === 'No, not right now.') {
       createTeamProfile(manager);
     }
-    console.log('responses from addEngineer', responses);
   });
 };
 
 
 const addIntern = manager => {
-  console.log('addIntern');
   inquirer
   .prompt(internQuestions)
   .then(responses => {
@@ -187,14 +180,12 @@ const addIntern = manager => {
     else if(responses.addTeammate === 'No, not right now.') {
       createTeamProfile(manager);
     }
-    console.log('responses from addIntern', responses);
   });
 }
 
    //TODO - add function to writeFile to html called createTeamProfile()
 const createTeamProfile = manager => {
   fs.writeFile('./dist/index.html', generatePage(manager), err => {
-    //responses;
     if(err) throw err;
 
     fs.copyFile('./src/style.css', './dist/style.css', err => {

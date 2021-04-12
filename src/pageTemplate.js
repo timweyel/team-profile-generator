@@ -15,16 +15,16 @@ const generatePage = manager => {
   </head>
 <body>
 <!-- header -->
-    <header class="d-flex bg-dark text-light justify-content-center"><h1>My Team</h1></header>
+    <header class="d-flex bg-dark text-light justify-content-center pt-5 pb-5"><h1>Super Team</h1></header>
     <!-- main -->
     <main class = "container justify-content-center">
         <div class="mt-5 row justify-content-around">
             <div class = "card col-3 m-2 border-0">
                 <div class="bg-dark text-light card-header">
                     <h2 class= "text-light">${manager.name}</h2>
-                    <h2 class= "text-light"><i class="fas fa-mug-hot"></i>  ${manager.getRole()}</h2>
+                    <h2 class= "text-light text-align-center"><i class="fas fa-mug-hot"></i>  ${manager.getRole()}</h2>
                 </div>
-                <div class="bg-light card-body">
+                <div class="bg-secondary card-body">
                     <ul class="list-group">
                         <li class="list-group-item">Employee ID: ${manager.getId()} </li>
                         <li class="list-group-item">Email: <a href="mailto: ${manager.getEmail()}">${manager.getEmail()}</a> </li>
