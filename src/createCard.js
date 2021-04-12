@@ -21,7 +21,7 @@ const createCard = employee => {
       <div class = "card col-3 m-2">
           <div class="bg-dark text-light card-header">
               <h2 class= "text-light">${employee.name}</h2>
-              <h2 class= "text-light">${employee.getRole()}</h2>
+              <h2 class= "text-light"><i class="fas fa-user-graduate"></i>  ${employee.getRole()}</h2>
           </div>
           <div class="bg-light card-body">
               <ul class="list-group list-group-flush">
