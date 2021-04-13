@@ -5,6 +5,7 @@ const generatePage = require('./src/pageTemplate');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const { clear } = require('console');
 
 // manager is key to who his teammates are
 // create variables to hold questions for Manager, Engineer, Interns (each has their own variable)
@@ -18,11 +19,28 @@ const managerQuestions = [
     type: "input",
     name: "name",
     message: "Please enter the manager's name:",
+    validate: name => {
+      if(name) {
+        return true;
+      } else {
+        console.log("Please enter the manager's name:")
+      }
+    }
   },
   {
-    type: "number",
+    type: "input",
     name: "id",
     message: "What is the manager's employee ID?",
+    validate: id => {
+      ids = /^[0-9]+$/.test(id);
+
+      if (ids) {
+        return true;        
+      } else {
+        console.log("Employee ID must be a number. Please try again.");
+        return false;
+      }
+    }
   },
   {
     type: "input",
@@ -33,7 +51,7 @@ const managerQuestions = [
     default: () => {},
     validate: function (email) {
 
-        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 
         if (valid) {
           // console.log("Great job");
@@ -48,7 +66,17 @@ const managerQuestions = [
   {
     type: "number",
     name: "officeNumber",
-    message: "What is the manager's office number?"
+    message: "What is the manager's office number?",
+    validate: id => {
+      ids = /^[0-9]+$/.test(id);
+
+      if (ids) {
+        return true;        
+      } else {
+        console.log("Office number must be a number. Please try again.");
+        return false;
+      }
+    }
   },
   {
     type: "list",
@@ -69,12 +97,35 @@ const engineerQuestions = [
   {
     type: "input",
     name: "email",
-    message: "What is their email address?"
+    message: "What is their email address?",
+    default: () => {},
+    validate: function (email) {
+
+        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
+        if (valid) {
+          // console.log("Great job");
+            return true;
+        } else {
+            console.log(".  Please enter a valid email")
+            return false;
+        }
+      }
   },
   {
     type: "input",
     name: "id",
-    message: "What is their employee id?"
+    message: "What is their employee id?",
+    validate: id => {
+      ids = /^[0-9]+$/.test(id);
+
+      if (ids) {
+        return true;        
+      } else {
+        console.log("Employee ID must be a number. Please try again.");
+        return false;
+      }
+    }
   },
   {
     type: "input",
@@ -100,12 +151,35 @@ const internQuestions = [
   {
     type: "input",
     name: "email",
-    message: "What is their email address?"
+    message: "What is their email address?",
+    default: () => {},
+    validate: function (email) {
+
+        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
+        if (valid) {
+          // console.log("Great job");
+            return true;
+        } else {
+            console.log(".  Please enter a valid email")
+            return false;
+        }
+      }
   },
   {
     type: "input",
     name: "id",
-    message: "What is their employee id?"
+    message: "What is their employee id?",
+    validate: id => {
+      ids = /^[0-9]+$/.test(id);
+
+      if (ids) {
+        return true;        
+      } else {
+        console.log("Employee ID must be a number. Please try again.");
+        return false;
+      }
+    }
   },
   {
     type: "input",
