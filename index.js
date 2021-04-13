@@ -244,7 +244,6 @@ const addIntern = manager => {
   .then(responses => {
     const intern = new Intern(responses.name, responses.id, responses.email, responses.school);
     manager.teamMembers.push(intern);
-    console.log('addIntern intern', intern);
     if(responses.addTeammate === 'Yes, add an Engineer.') {
       addEngineer(manager);
     }
